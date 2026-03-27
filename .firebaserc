@@ -1,13 +1,7 @@
 {
-  "projects": {},
-  "targets": {
-    "uni-living": {
-      "hosting": {
-        "uni-living": [
-          "uni-living"
-        ]
-      }
-    }
+  "projects": {
+    "default": "uni-living"
   },
+  "targets": {},
   "etags": {}
 }
