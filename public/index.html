@@ -226,24 +226,8 @@ nav {
 .ticker-item::after { content: '✦'; color: var(--pink); font-size: 0.7rem; }
 @keyframes tick { to { transform: translateX(-50%); } }
 
-/* ── CO— GROWING ── */
-.sec-growing {
-  background: var(--white);
-  padding: 100px 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.sec-growing .display { font-size: clamp(3rem, 5.5vw, 5.5rem); color: var(--black); }
-
-.sec-growing .body-text {
-  font-size: 1.05rem;
-  color: var(--black);
-  margin: 28px 0 36px;
-  max-width: 440px;
-}
+/* ── CO— GROWING (static, kept for reference but hidden) ── */
+.sec-growing { display: none; }
 
 .photo-r {
   width: 100%;
@@ -251,6 +235,98 @@ nav {
   background-size: cover;
   background-position: center;
   border-radius: 2px;
+}
+
+/* ── STICKY SCROLL SECTION ── */
+.sec-sticky {
+  background: var(--yellow);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* LEFT: sticky pinned column */
+.sticky-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px;
+  overflow: hidden;
+}
+
+.sticky-left .co-prefix {
+  font-family: 'Atak', sans-serif;
+  font-weight: 700;
+  font-size: clamp(3.5rem, 7vw, 8.5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin: 0;
+}
+
+.sticky-photo {
+  width: 100%;
+  height: 36%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+/* RIGHT: scrolling panels */
+.sticky-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-panel {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 48px;
+}
+
+.sticky-panel .panel-heading {
+  font-family: 'Atak', sans-serif;
+  font-weight: 700;
+  font-size: clamp(3.5rem, 7vw, 8.5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin: 0;
+}
+
+.sticky-panel .panel-body {
+  font-family: 'Atak', sans-serif;
+  font-size: 1.05rem;
+  color: rgba(0,0,0,0.65);
+  line-height: 1.6;
+  margin-top: 32px;
+  max-width: 380px;
+}
+
+.sticky-panel .panel-btn {
+  margin-top: 36px;
+}
+
+@media (max-width: 960px) {
+  .sec-sticky {
+    grid-template-columns: 1fr;
+  }
+  .sticky-left {
+    position: relative;
+    height: auto;
+    padding: 48px 20px 0;
+  }
+  .sticky-photo { display: none; }
+  .sticky-panel {
+    height: auto;
+    padding: 40px 20px;
+    min-height: 60vh;
+  }
+  .sticky-panel:first-child { padding-top: 0; }
 }
 
 /* ── JOIN OUR TRIBE ── */
@@ -974,18 +1050,59 @@ footer {
   </div>
 </div>
 
-<!-- CO— GROWING -->
-<section class="sec-growing">
-  <div class="rev">
-    <p class="eyebrow">Our Community</p>
-    <h2 class="display">Co—<br>Growing</h2>
-    <p class="body-text" style="font-size:1.05rem;color:var(--black);margin:28px 0 36px;max-width:440px;">
-      Becoming a part of uniliving means you enter a unique community of individuals who want to move, choose, grow and get creative with like-minded people. Everything here was already thought of and whats left is for you to enjoy.
-    </p>
-    <a href="#join" class="btn btn-blk">Join our Tribe</a>
+<!-- CO— STICKY SCROLL -->
+<section class="sec-sticky">
+
+  <!-- LEFT: pinned "Co—" -->
+  <div class="sticky-left">
+    <h2 class="co-prefix">Co—</h2>
+    <img
+      class="sticky-photo"
+      src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=900&q=80"
+      alt="People hanging out in a co-living lounge"
+    />
   </div>
-  <div class="rev" style="transition-delay:.12s">
-    <div class="photo-r" style="background-image:url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=900&q=80')"></div>
+
+  <!-- RIGHT: three scrolling panels -->
+  <div class="sticky-right">
+
+    <!-- Panel 1: Living -->
+    <div class="sticky-panel">
+      <h2 class="panel-heading">Living</h2>
+      <p class="panel-body">
+        Thoughtfully designed rooms and shared spaces that feel like home from day one.
+        Choose your new home from a variety of stays in the most popular area of the city with the best folks for neighbors.
+        You’ll never be alone again (unless you want to).
+      </p>
+      <div class="panel-btn">
+        <a href="#accommodation" class="btn btn-outline-blk">Find a Flat</a>
+      </div>
+    </div>
+
+    <!-- Panel 2: Working -->
+    <div class="sticky-panel">
+      <h2 class="panel-heading">Working</h2>
+      <p class="panel-body">
+        High-speed internet, quiet study zones, co-working lounges, and meeting pods.
+        Every corner is optimised for your best focus. The Uniliving business community gets together daily.
+      </p>
+      <div class="panel-btn">
+        <a href="#spaces" class="btn btn-outline-blk">See Spaces</a>
+      </div>
+    </div>
+
+    <!-- Panel 3: Growing -->
+    <div class="sticky-panel">
+      <h2 class="panel-heading">Growing</h2>
+      <p class="panel-body">
+        Becoming a part of uniliving means you enter a unique community of individuals who want to move, choose, grow and get creative with like-minded people.
+        Join the networking, create events of your own or even become our partner. Explore the opportunities that come together with being a part of unitribe.
+      </p>
+      <div class="panel-btn">
+        <a href="#join" class="btn btn-blk">Join our Tribe</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
