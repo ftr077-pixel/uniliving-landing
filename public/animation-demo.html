@@ -5,12 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Uniliving — Co-Living / Working / Growing</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<!--
+  Inter        → "uni" block text (weight 900)
+  Caveat       → "Living" handwritten script (weight 700)
+  These two together recreate the Figma logo mark.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Caveat:wght@700&display=swap" rel="stylesheet" />
 <script>
   tailwind.config = {
     theme: {
       extend: {
-        fontFamily: { sans: ['Inter', 'sans-serif'] },
+        fontFamily: {
+          sans:   ['Inter', 'sans-serif'],
+          script: ['Caveat', 'cursive'],
+        },
       }
     }
   }
@@ -29,9 +37,67 @@
     opacity: 1;
     transform: none;
   }
+
+  /*
+   * Logo mark: "uni" block + "Living" script
+   * Mirrors the Figma design (node 327-93):
+   *   - "uni"    → Inter Black, uppercase, tight tracking
+   *   - "Living" → Caveat Bold, ~1.55× the size, slightly lower baseline
+   *                so the descender of the "g" overlaps under "uni"
+   */
+  .logo-uni {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .logo-living {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 2.1rem;
+    line-height: 0.85;
+    color: #fff;
+    /* pulls "Living" up so it visually overlaps "uni" like in Figma */
+    position: relative;
+    top: 0.15rem;
+    margin-left: -0.05em;
+  }
+
+  /* Larger version used in the hero */
+  .logo-uni-lg    { font-size: clamp(2rem, 3.5vw, 3.2rem); }
+  .logo-living-lg { font-size: clamp(3.1rem, 5.5vw, 5rem); top: 0.2rem; }
 </style>
 </head>
 <body class="bg-black font-sans antialiased">
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAV BAR
+       ═══════════════════════════════════════════════════════════ -->
+  <nav class="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-10 py-6">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-baseline leading-none select-none">
+      <span class="logo-uni">uni</span><span class="logo-living">Living</span>
+    </a>
+
+    <!-- Nav links -->
+    <ul class="hidden md:flex items-center gap-8 text-white/70 text-sm font-medium">
+      <li><a href="#" class="hover:text-white transition-colors">Join</a></li>
+      <li><a href="#" class="hover:text-white transition-colors">Plans</a></li>
+      <li><a href="#" class="hover:text-white transition-colors">Events</a></li>
+      <li><a href="#" class="hover:text-white transition-colors">Contacts</a></li>
+    </ul>
+
+    <!-- CTA -->
+    <a href="#" class="hidden md:inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2 text-sm text-white hover:bg-white hover:text-black transition-all">
+      Become a member
+    </a>
+
+  </nav>
+
 
   <!-- ═══════════════════════════════════════════════════════════
        HERO SECTION
@@ -51,10 +117,13 @@
     <div class="absolute inset-0 bg-black/65"></div>
 
     <!-- Copy -->
-    <div class="relative z-10 grid h-full grid-cols-2 items-center gap-16 px-12">
-      <h1 class="text-[clamp(3rem,6vw,5.5rem)] font-black leading-none tracking-tight text-white">
-        Uniliving.<br />Offbeat.
-      </h1>
+    <div class="relative z-10 grid h-full grid-cols-2 items-end gap-16 px-12 pb-20">
+
+      <!-- Large logo mark in hero -->
+      <div class="flex items-baseline leading-none select-none">
+        <span class="logo-uni logo-uni-lg">uni</span><span class="logo-living logo-living-lg">Living</span>
+      </div>
+
       <p class="max-w-md text-[1.15rem] leading-relaxed text-white/75">
         A community built for students who refuse to just get by.
         Find your people, your space, and your rhythm — all in one place.
