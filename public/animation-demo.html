@@ -5,20 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Uniliving — Co-Living / Working / Growing</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<!--
-  Inter        → "uni" block text (weight 900)
-  Caveat       → "Living" handwritten script (weight 700)
-  These two together recreate the Figma logo mark.
--->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Caveat:wght@700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
 <script>
   tailwind.config = {
     theme: {
       extend: {
-        fontFamily: {
-          sans:   ['Inter', 'sans-serif'],
-          script: ['Caveat', 'cursive'],
-        },
+        fontFamily: { sans: ['Inter', 'sans-serif'] },
       }
     }
   }
@@ -37,38 +29,6 @@
     opacity: 1;
     transform: none;
   }
-
-  /*
-   * Logo mark: "uni" block + "Living" script
-   * Mirrors the Figma design (node 327-93):
-   *   - "uni"    → Inter Black, uppercase, tight tracking
-   *   - "Living" → Caveat Bold, ~1.55× the size, slightly lower baseline
-   *                so the descender of the "g" overlaps under "uni"
-   */
-  .logo-uni {
-    font-family: 'Inter', sans-serif;
-    font-weight: 900;
-    font-size: 1.35rem;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    text-transform: uppercase;
-    color: #fff;
-  }
-  .logo-living {
-    font-family: 'Caveat', cursive;
-    font-weight: 700;
-    font-size: 2.1rem;
-    line-height: 0.85;
-    color: #fff;
-    /* pulls "Living" up so it visually overlaps "uni" like in Figma */
-    position: relative;
-    top: 0.15rem;
-    margin-left: -0.05em;
-  }
-
-  /* Larger version used in the hero */
-  .logo-uni-lg    { font-size: clamp(2rem, 3.5vw, 3.2rem); }
-  .logo-living-lg { font-size: clamp(3.1rem, 5.5vw, 5rem); top: 0.2rem; }
 </style>
 </head>
 <body class="bg-black font-sans antialiased">
@@ -78,9 +38,9 @@
        ═══════════════════════════════════════════════════════════ -->
   <nav class="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-10 py-6">
 
-    <!-- Logo -->
-    <a href="#" class="flex items-baseline leading-none select-none">
-      <span class="logo-uni">uni</span><span class="logo-living">Living</span>
+    <!-- Logo (real SVG asset) -->
+    <a href="#" class="block select-none" style="height:40px;">
+      <img src="logo.svg" alt="uniLiving" class="h-full w-auto" />
     </a>
 
     <!-- Nav links -->
@@ -120,8 +80,8 @@
     <div class="relative z-10 grid h-full grid-cols-2 items-end gap-16 px-12 pb-20">
 
       <!-- Large logo mark in hero -->
-      <div class="flex items-baseline leading-none select-none">
-        <span class="logo-uni logo-uni-lg">uni</span><span class="logo-living logo-living-lg">Living</span>
+      <div class="select-none" style="width: clamp(180px, 30vw, 340px);">
+        <img src="logo.svg" alt="uniLiving" class="w-full h-auto" />
       </div>
 
       <p class="max-w-md text-[1.15rem] leading-relaxed text-white/75">
