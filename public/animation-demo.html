@@ -34,6 +34,32 @@
 <body class="bg-black font-sans antialiased">
 
   <!-- ═══════════════════════════════════════════════════════════
+       NAV BAR
+       ═══════════════════════════════════════════════════════════ -->
+  <nav class="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-10 py-6">
+
+    <!-- Logo (real SVG asset) -->
+    <a href="#" class="block select-none" style="height:40px;">
+      <img src="logo.svg" alt="uniLiving" class="h-full w-auto" />
+    </a>
+
+    <!-- Nav links -->
+    <ul class="hidden md:flex items-center gap-8 text-white/70 text-sm font-medium">
+      <li><a href="#" class="hover:text-white transition-colors">Join</a></li>
+      <li><a href="#" class="hover:text-white transition-colors">Plans</a></li>
+      <li><a href="#" class="hover:text-white transition-colors">Events</a></li>
+      <li><a href="#" class="hover:text-white transition-colors">Contacts</a></li>
+    </ul>
+
+    <!-- CTA -->
+    <a href="#" class="hidden md:inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2 text-sm text-white hover:bg-white hover:text-black transition-all">
+      Become a member
+    </a>
+
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
        HERO SECTION
        Full viewport · dark overlay · two-column copy
        ═══════════════════════════════════════════════════════════ -->
@@ -51,10 +77,13 @@
     <div class="absolute inset-0 bg-black/65"></div>
 
     <!-- Copy -->
-    <div class="relative z-10 grid h-full grid-cols-2 items-center gap-16 px-12">
-      <h1 class="text-[clamp(3rem,6vw,5.5rem)] font-black leading-none tracking-tight text-white">
-        Uniliving.<br />Offbeat.
-      </h1>
+    <div class="relative z-10 grid h-full grid-cols-2 items-end gap-16 px-12 pb-20">
+
+      <!-- Large logo mark in hero -->
+      <div class="select-none" style="width: clamp(180px, 30vw, 340px);">
+        <img src="logo.svg" alt="uniLiving" class="w-full h-auto" />
+      </div>
+
       <p class="max-w-md text-[1.15rem] leading-relaxed text-white/75">
         A community built for students who refuse to just get by.
         Find your people, your space, and your rhythm — all in one place.
