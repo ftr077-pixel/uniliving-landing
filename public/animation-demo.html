@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Uniliving — Co-Living / Working / Growing</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Inter', 'sans-serif'] },
+      }
+    }
+  }
+</script>
+<style>
+  /* Ensure sticky works — no ancestor can have overflow:hidden */
+  html, body { overflow-x: hidden; }
+
+  /* Subtle entrance for panel text as it scrolls into view */
+  .panel-body {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .panel-body.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body class="bg-black font-sans antialiased">
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO SECTION
+       Full viewport · dark overlay · two-column copy
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="relative h-screen w-full overflow-hidden">
+
+    <!-- Background image -->
+    <img
+      src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1600&auto=format&q=80"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 h-full w-full object-cover object-center"
+    />
+
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-black/65"></div>
+
+    <!-- Copy -->
+    <div class="relative z-10 grid h-full grid-cols-2 items-center gap-16 px-12">
+      <h1 class="text-[clamp(3rem,6vw,5.5rem)] font-black leading-none tracking-tight text-white">
+        Uniliving.<br />Offbeat.
+      </h1>
+      <p class="max-w-md text-[1.15rem] leading-relaxed text-white/75">
+        A community built for students who refuse to just get by.
+        Find your people, your space, and your rhythm — all in one place.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       STICKY SCROLL SECTION  (300 vh)
+
+       CSS grid: two columns, equal width.
+       LEFT  → sticky top-0 h-screen  (pinned the entire scroll)
+       RIGHT → three × h-screen panels (scroll past the left)
+
+       ALIGNMENT SECRET:
+         Both "Co—" and every panel heading share:
+           • identical font-size  (clamp value)
+           • font-weight 900
+           • line-height 1  (leading-none)
+           • top padding 48 px  (p-12 on both containers)
+           • margin: 0  (no browser default h2 margin)
+         → when a panel reaches viewport top the two words
+           sit on exactly the same baseline: "Co—Living" ✓
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="grid grid-cols-2 bg-[#dbff00]">
+
+    <!-- ── LEFT COLUMN  (sticky) ──────────────────────────── -->
+    <div class="sticky top-0 flex h-screen flex-col justify-between p-12">
+
+      <!-- "Co—" — must perfectly match panel headings -->
+      <h2
+        class="m-0 font-black leading-none tracking-tight text-black"
+        style="font-size: clamp(3.5rem, 7vw, 8.5rem);"
+      >
+        Co—
+      </h2>
+
+      <!-- Placeholder image anchored to the bottom-left -->
+      <div class="w-full overflow-hidden rounded-2xl" style="height:36%;">
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&auto=format&q=80"
+          alt="Students relaxing in a shared living room"
+          class="h-full w-full object-cover"
+        />
+      </div>
+
+    </div>
+
+
+    <!-- ── RIGHT COLUMN  (scrolls past the sticky left) ───── -->
+    <div>
+
+      <!-- Panel 1 — Living -->
+      <div class="flex h-screen flex-col justify-start p-12">
+        <h2
+          class="m-0 font-black leading-none tracking-tight text-black"
+          style="font-size: clamp(3.5rem, 7vw, 8.5rem);"
+        >
+          Living
+        </h2>
+        <p class="panel-body mt-8 max-w-sm text-[1.05rem] leading-relaxed text-black/65">
+          Thoughtfully designed rooms and shared spaces that feel like
+          home from day one. Private, semi-private, or communal —
+          you choose the vibe.
+        </p>
+      </div>
+
+      <!-- Panel 2 — Working -->
+      <div class="flex h-screen flex-col justify-start p-12">
+        <h2
+          class="m-0 font-black leading-none tracking-tight text-black"
+          style="font-size: clamp(3.5rem, 7vw, 8.5rem);"
+        >
+          Working
+        </h2>
+        <p class="panel-body mt-8 max-w-sm text-[1.05rem] leading-relaxed text-black/65">
+          High-speed internet, quiet study zones, co-working lounges,
+          and meeting pods. Every corner is optimised for your best focus.
+        </p>
+      </div>
+
+      <!-- Panel 3 — Growing -->
+      <div class="flex h-screen flex-col justify-start p-12">
+        <h2
+          class="m-0 font-black leading-none tracking-tight text-black"
+          style="font-size: clamp(3.5rem, 7vw, 8.5rem);"
+        >
+          Growing
+        </h2>
+        <p class="panel-body mt-8 max-w-sm text-[1.05rem] leading-relaxed text-black/65">
+          Events, workshops, mentors, and a community that actually
+          shows up for each other. This is where you level up —
+          personally and professionally.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       Panel body fade-in on scroll (IntersectionObserver)
+       ═══════════════════════════════════════════════════════════ -->
+  <script>
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll('.panel-body').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
